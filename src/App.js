@@ -8,7 +8,7 @@ import PlaylistManager from './components/PlaylistManager';
 import './styles.css';
 
 // API Key stored in environment variables for security
-REACT_APP_YOUTUBE_API_KEY=IzaSyAlbqtsENh8DLs4-TPP6wmANKAxKejkvrcA
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
 function App() {
   const [videos, setVideos] = useState([]);
