@@ -16,6 +16,7 @@ function App() {
   const [playlist, setPlaylist] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
 
   // Load playlist from localStorage on mount
   useEffect(() => {
@@ -35,6 +36,9 @@ function App() {
       return;
     }
 
+    setIsLoading(true); // Start loading
+    setErrorMessage(''); // Clear previous error message
+
     try {
       const response = await axios.get(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${API_KEY}`
@@ -45,11 +49,12 @@ function App() {
       } else {
         setVideos(response.data.items);
         setSelectedVideo(response.data.items[0]);
-        setErrorMessage(''); // Clear any previous error message
       }
     } catch (error) {
       console.error('Error fetching videos:', error);
       setErrorMessage('An error occurred while fetching videos. Please try again later.');
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -62,6 +67,8 @@ function App() {
   const addToPlaylist = (video) => {
     if (!playlist.some((item) => item.id.videoId === video.id.videoId)) {
       setPlaylist([...playlist, video]);
+    } else {
+      alert('This video is already in your playlist!');
     }
   };
 
@@ -75,31 +82,46 @@ function App() {
     const currentIndex = videos.findIndex((v) => v.id.videoId === selectedVideo?.id.videoId);
     if (currentIndex !== -1 && currentIndex < videos.length - 1) {
       setSelectedVideo(videos[currentIndex + 1]);
+    } else {
+      alert('No more videos to play!');
     }
   };
 
   return (
     <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
+      {/* Search Bar */}
       <SearchBar onSearch={searchVideos} />
-      
+
+      {/* Error Message */}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <div className="content">
-        <VideoPlayer video={selectedVideo} onNext={playNextVideo} />
-        <div className="sidebar">
-          <VideoList
-            videos={videos}
-            onVideoSelect={setSelectedVideo}
-            addToPlaylist={addToPlaylist}
-          />
-          <PlaylistManager
-            playlist={playlist}
-            onRemove={removeFromPlaylist}
-            onVideoSelect={setSelectedVideo}
-          />
+      {/* Loading Spinner */}
+      {isLoading && (
+        <div className="loading-spinner">
+          <div className="spinner"></div>
         </div>
-      </div>
+      )}
+
+      {/* Main Content */}
+      {!isLoading && selectedVideo && (
+        <div className="content">
+          <VideoPlayer video={selectedVideo} onNext={playNextVideo} />
+          <div className="sidebar">
+            <VideoList
+              videos={videos}
+              onVideoSelect={setSelectedVideo}
+              addToPlaylist={addToPlaylist}
+            />
+            <PlaylistManager
+              playlist={playlist}
+              onRemove={removeFromPlaylist}
+              onVideoSelect={setSelectedVideo}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
