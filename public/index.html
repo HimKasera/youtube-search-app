@@ -63,9 +63,12 @@
 
       .footer .social-links a {
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         color: #0077b5; /* LinkedIn Blue */
-        font-size: 1.2rem;
-        transition: color 0.3s ease-in-out;
+        font-size: 0.9rem;
+        transition: opacity 0.3s ease-in-out;
       }
 
       .footer .social-links a.instagram {
@@ -74,6 +77,11 @@
 
       .footer .social-links a:hover {
         opacity: 0.8;
+      }
+
+      .footer .social-links img {
+        width: 24px;
+        height: 24px;
       }
     </style>
   </head>
@@ -87,8 +95,14 @@
         &copy; <span id="current-year"></span> YouTube Video Search App. All rights reserved.
       </div>
       <div class="social-links">
-        <a href="https://www.linkedin.com/in/himkasera/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://www.instagram.com/him_kasera/" target="_blank" rel="noopener noreferrer" class="instagram">Instagram</a>
+        <a href="https://www.linkedin.com/in/himkasera/" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.icons8.com/fluency/48/linkedin.png" alt="LinkedIn" width="24" height="24" />
+          LinkedIn
+        </a>
+        <a href="https://www.instagram.com/him_kasera/" target="_blank" rel="noopener noreferrer" class="instagram">
+          <img src="https://img.icons8.com/fluency/96/instagram-new.png" alt="Instagram" width="24" height="24" />
+          Instagram
+        </a>
       </div>
     </footer>
 
