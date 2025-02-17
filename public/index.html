@@ -7,28 +7,62 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="A sleek YouTube video search app with a distraction-free interface."
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Open Graph Tags -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Open Graph Tags for Social Media -->
     <meta property="og:title" content="YouTube Video Search App" />
     <meta property="og:description" content="Search and play YouTube videos with a distraction-free interface." />
     <meta property="og:image" content="%PUBLIC_URL%/thumbnail.png" />
+    <meta property="og:url" content="https://yourwebsite.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="YouTube Video Search App" />
+    <meta name="twitter:description" content="Search and play YouTube videos with a distraction-free interface." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/thumbnail.png" />
 
     <title>YouTube Video Search App</title>
-    
+
     <!-- Custom Styles -->
     <style>
       body {
         font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #f0f8ff, #99bdce);
+        color: #413d3d;
+        transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 1rem;
+        background: #f8f9fa;
+        color: #413d3d;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
       }
     </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <!-- Footer with Dynamic Copyright Notice -->
+    <footer class="footer">
+      &copy; <span id="current-year"></span> YouTube Video Search App. All rights reserved.
+    </footer>
+
+    <!-- Script to Dynamically Update the Year -->
+    <script>
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
