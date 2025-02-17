@@ -42,12 +42,38 @@
       }
 
       .footer {
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 1rem;
         background: #f8f9fa;
         color: #413d3d;
         font-size: 0.9rem;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .footer .copyright {
+        text-align: left;
+      }
+
+      .footer .social-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .footer .social-links a {
+        text-decoration: none;
+        color: #0077b5; /* LinkedIn Blue */
+        font-size: 1.2rem;
+        transition: color 0.3s ease-in-out;
+      }
+
+      .footer .social-links a.instagram {
+        color: #e1306c; /* Instagram Gradient Pink */
+      }
+
+      .footer .social-links a:hover {
+        opacity: 0.8;
       }
     </style>
   </head>
@@ -55,9 +81,15 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-    <!-- Footer with Dynamic Copyright Notice -->
+    <!-- Footer with Dynamic Copyright Notice and Social Links -->
     <footer class="footer">
-      &copy; <span id="current-year"></span> YouTube Video Search App. All rights reserved.
+      <div class="copyright">
+        &copy; <span id="current-year"></span> YouTube Video Search App. All rights reserved.
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/himkasera/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/him_kasera/" target="_blank" rel="noopener noreferrer" class="instagram">Instagram</a>
+      </div>
     </footer>
 
     <!-- Script to Dynamically Update the Year -->
